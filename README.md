@@ -52,6 +52,8 @@ ALTER TABLE "sample_foo" ADD CONSTRAINT "bar_equal_baz" check (bar = baz)
 
 It's possible to support composite foreign keys if you have a unique key on your reference model:
 
+([Why are composite foreign keys useful?](https://github.com/rapilabs/blog/blob/master/articles/same-parent-db-pattern.md))
+
 ```python
 class Bar(models.Model):
     baz = models.IntegerField()
