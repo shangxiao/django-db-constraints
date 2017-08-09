@@ -78,6 +78,12 @@ Results in:
 ALTER TABLE "sample_foo" ADD CONSTRAINT "composite_fk" foreign key (bar_id, baz) references sample_bar (id, baz)
 ```
 
+## Migration operation ordering
+
+Given that nothing will depend on a constraint operation, they're simply added to the end of the list of operations
+for a migration.  This includes operations that drop fields used in a constraint as the database drop will any related
+constraints as well (at least with PostgreSQL).
+
 ## Installation
 
 ```
