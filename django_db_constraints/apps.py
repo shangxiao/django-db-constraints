@@ -31,7 +31,7 @@ class AlterConstraints(ModelOptionOperation):
             from_constraints = getattr(from_model._meta, self.option_name, {}).keys()
 
             table_operations = tuple(
-                'DROP CONSTRAINT {name}'.format(
+                'DROP CONSTRAINT IF EXISTS {name}'.format(
                     name=schema_editor.connection.ops.quote_name(constraint_name),
                 )
                 for constraint_name in from_constraints - to_constraints
@@ -42,7 +42,7 @@ class AlterConstraints(ModelOptionOperation):
                 )
                 for constraint_name in to_constraints - from_constraints
             ) + tuple(
-                'DROP CONSTRAINT {name}, ADD CONSTRAINT {name} {constraint}'.format(
+                'DROP CONSTRAINT IF EXISTS {name}, ADD CONSTRAINT {name} {constraint}'.format(
                     name=schema_editor.connection.ops.quote_name(constraint_name),
                     constraint=to_model._meta.db_constraints[constraint_name],
                 )
