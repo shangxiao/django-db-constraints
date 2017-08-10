@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('baz', models.IntegerField()),
             ],
         ),
-        django_db_constraints.apps.AlterConstraints(
+        django_db_constraints.operations.AlterConstraints(
             name='Foo',
             db_constraints={'bar_equal_baz': 'check (bar = baz)'},
         ),
