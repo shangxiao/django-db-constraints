@@ -84,6 +84,11 @@ Given that nothing will depend on a constraint operation, they're simply added t
 for a migration.  This includes operations that drop fields used in a constraint as the database drop will any related
 constraints as well (at least with PostgreSQL).
 
+## Caveats
+
+It's possible to end up in a situation where the constraints are declared on the Meta class but do not exist in the database
+due to a database dropping a constraint implicitly when a field in the constraint is dropped.
+
 ## Installation
 
 ```
