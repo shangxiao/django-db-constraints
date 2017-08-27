@@ -78,16 +78,26 @@ Results in:
 ALTER TABLE "sample_foo" ADD CONSTRAINT "composite_fk" foreign key (bar_id, baz) references sample_bar (id, baz)
 ```
 
-## Migration operation ordering
+## Notes
+
+### Migration operation ordering
 
 Given that nothing will depend on a constraint operation, they're simply added to the end of the list of operations
 for a migration.  This includes operations that drop fields used in a constraint as the database drop will any related
 constraints as well (at least with PostgreSQL).
 
-## Caveats
+### Caveats
 
 It's possible to end up in a situation where the constraints are declared on the Meta class but do not exist in the database
 due to a database dropping a constraint implicitly when a field in the constraint is dropped.
+
+### Please test your constraints!
+
+I encourage folks to write tests for their constraints to ensure they write are actually applied in the database.
+
+### Acknowledgements
+
+Thanks to @schinckel and @MarkusH for their advice and ideas.
 
 ## Installation
 
